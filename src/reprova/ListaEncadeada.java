@@ -162,12 +162,16 @@ public class ListaEncadeada {
         No no = this.primeiro;
         No noAux = new No(null);
         while(this.ordenadaPrioridade()==false){
-            while(no.getProximo()==null){
-                if(no.getPrioridade()<no.getProximo().getPrioridade()){
-                    
-                }
+            if(no.getPrioridade()>no.getProximo().getPrioridade()){
+                noAux = no;
+                no.getProximo().setProximo(noAux);
                 no=no.getProximo();
+                
             }
+            if(no.getProximo().equals(ultimo)){
+                no = primeiro;
+            }
+            no = no.getProximo();
         }
     }
     
