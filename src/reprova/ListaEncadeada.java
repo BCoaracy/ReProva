@@ -160,18 +160,31 @@ public class ListaEncadeada {
     
     public void ordenarListaPrioridade(){
         No no = this.primeiro;
-        No noAux = new No(null);
+        No noAux = no.getProximo();
+        No noAnt = this.primeiro;
         while(this.ordenadaPrioridade()==false){
-            if(no.getPrioridade()>no.getProximo().getPrioridade()){
-                noAux = no;
-                no.getProximo().setProximo(noAux);
-                no=no.getProximo();
-                
+            if(noAux!=null){
+                if(no.getPrioridade()>noAux.getPrioridade()){
+                    if(no==primeiro){
+                        no.setProximo(noAux.getProximo());
+                        noAux.setProximo(no);
+                        primeiro = noAux;
+                    }else{
+                        no.setProximo(noAux.getProximo());
+                        noAux.setProximo(no);
+                        noAnt.setProximo(noAux);
+                    }
+                }
             }
-            if(no.getProximo().equals(ultimo)){
+            if(no.getProximo()==null){
+                ultimo = no;
                 no = primeiro;
+                noAux = no.getProximo();
+            }else{
+                noAnt = no;
+                no = no.getProximo();
+                noAux = no.getProximo();
             }
-            no = no.getProximo();
         }
     }
     
