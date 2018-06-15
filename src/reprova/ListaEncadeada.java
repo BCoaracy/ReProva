@@ -66,6 +66,20 @@ public class ListaEncadeada {
         this.totalDeElementos++;
     }
     
+    public void adicionaNoFim(No no) {
+        if(primeiro == null){
+            primeiro = no;
+            ultimo = no;
+            primeiro.setProximo(null);
+            ultimo.setProximo(null);
+        }else{
+            ultimo.setProximo(no);
+            ultimo = no;
+            ultimo.setProximo(null);
+        }
+        this.totalDeElementos++;
+    }
+    
     public void adicionaNoFimComPrioridade(int prioridade, Object elemento) {
         No no = new No(prioridade, elemento);
         if(primeiro == null){
